@@ -1,0 +1,10 @@
+bin
+obj
+.vs
+*.pdf
+*.mp4
+*.pptx
+*.user
+*.pubxml
+*.csproj.user
+*.pubxml.user
