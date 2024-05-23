@@ -88,7 +88,7 @@ namespace DesignPattern
 
     public class StaticInsClass
     {
-        private static int counter = 1;
+        public static int counter = 1;
 
         public StaticInsClass()
         {
@@ -118,11 +118,15 @@ namespace DesignPattern
 
         static StaticCons()
         {
-            //counter++;
+            counter++;
         }
+        //public StaticCons()
+        //{
+        //    counter++;
+        //}
         public void Print()
         {
-            //counter++;
+            counter++;
             Console.WriteLine(" " + counter + " Hello, World!");
             Console.WriteLine(" " + counterExtrnl + " Hello, World! extrnl");
         }

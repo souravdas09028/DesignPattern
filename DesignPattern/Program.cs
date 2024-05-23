@@ -7,7 +7,7 @@ namespace DesignPattern
         static void Main(string[] args)
         {
             //CallStaticInstance();
-            //CallStaticCons();
+            CallStaticCons();
 
             // static class and singletone class are quite similar but singletone class are more flexible
             //we will use singletone over static claas for these reasons
@@ -41,8 +41,8 @@ namespace DesignPattern
             //check lock mechanism eager loading
             //Parallel.Invoke(() => CreatedEgarObj1(), () => CreatedEgarObj2());
 
-            var discount = GetDiscountByFactoryCls(1);
-            Console.WriteLine(discount);            
+            //var discount = GetDiscountByFactoryCls(1);
+            //Console.WriteLine(discount);            
 
             Console.ReadLine();
         }
@@ -106,7 +106,6 @@ namespace DesignPattern
             Console.WriteLine(obj2.cost == obj1.cost);
             Console.WriteLine(obj2 == obj1);
         }
-
         public static void CallStaticInstance()
         {
             //check static prop behaviour
@@ -119,6 +118,9 @@ namespace DesignPattern
             StaticInsClass obj3 = new StaticInsClass();
             obj2.Print();
             obj1.Print();
+
+            StaticInsClass.counter = 1;
+            obj3.Print();
 
             //Singletone.counter = 0;
             Console.WriteLine(obj2 == obj1);
@@ -134,7 +136,25 @@ namespace DesignPattern
 
             // field are initialized when object is created but properties are not
             //static constructor is called only once as like as static fields
-            //static constructor and static fields are tied togather when one is called another is called also
+            //static constructor and static fields are tied togather when one is called another is called also                     
+
+
+
+            //public static int counter = 1;
+            //public static int counter2 = 1;
+            //public int counterExtrnl = 1;
+            //public int prop1 { get; set; }
+            //static StaticCons()
+            //{
+            //    counter++;
+            //}
+            //public void Print()
+            //{
+            //    counter++;
+            //    Console.WriteLine(" " + counter + " Hello, World!");
+            //    Console.WriteLine(" " + counterExtrnl + " Hello, World! extrnl");
+            //}        
+
 
             StaticCons.counter = 0;
             StaticCons obj1 = new StaticCons();
@@ -144,6 +164,7 @@ namespace DesignPattern
 
             obj1.Print();
             obj1.Print();
+            obj2.Print();
 
             StaticCons.counter = 1;
             StaticCons obj3 = new StaticCons();
