@@ -11,6 +11,12 @@ namespace DesignPattern
         public class RetailCustomer() : ICustomer
         {
             public int dicount { get; set; }
+
+            public ICustomer Clone()
+            {
+                return (ICustomer)this.MemberwiseClone();
+            }
+
             public decimal GetDiscount()
             {
                 return 10;
@@ -24,6 +30,11 @@ namespace DesignPattern
             {
                 return dicount * 2;
             }
+
+            public ICustomer Clone()
+            {
+                return (ICustomer)this.MemberwiseClone();
+            }
         }
 
         public class WholeSaleCustomer() : ICustomer
@@ -32,6 +43,11 @@ namespace DesignPattern
             public decimal GetDiscount()
             {
                 return dicount * 3;
+            }
+
+            public ICustomer Clone()
+            {
+                return (ICustomer)this.MemberwiseClone();
             }
         }
     }

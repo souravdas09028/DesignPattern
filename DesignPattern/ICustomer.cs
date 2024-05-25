@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace DesignPattern
 {
     public interface ICustomer
-    {
+    {       
         decimal GetDiscount();
+
+        ICustomer Clone();
     }
 }

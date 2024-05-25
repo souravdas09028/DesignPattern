@@ -9,6 +9,12 @@ namespace DesignPattern
 {
     public static class CustomerFactory
     {
+        static Dictionary<int, ICustomer> container = new Dictionary<int, ICustomer>();
+        static CustomerFactory()
+        {
+            container.Add(0, new SuperShop());
+            container.Add(1, new WholeSaleCustomer());
+        }
         public static ICustomer CreateCustomer(int custType)
         {
             //if this is inside it will return new instance and it is thread safe
@@ -25,6 +31,12 @@ namespace DesignPattern
             }
 
             return cust;
+        }
+
+        public static ICustomer CreateFromContainer(int custType)
+        {
+            //need to clone other wise it would send same reference for all
+            return container[custType].Clone();
         }
     }
 }

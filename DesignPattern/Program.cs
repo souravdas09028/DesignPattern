@@ -7,7 +7,7 @@ namespace DesignPattern
         static void Main(string[] args)
         {
             //CallStaticInstance();
-            CallStaticCons();
+            //CallStaticCons();
 
             // static class and singletone class are quite similar but singletone class are more flexible
             //we will use singletone over static claas for these reasons
@@ -42,18 +42,50 @@ namespace DesignPattern
             //Parallel.Invoke(() => CreatedEgarObj1(), () => CreatedEgarObj2());
 
             //var discount = GetDiscountByFactoryCls(1);
+
+            var discount = GetDiscountByUnityFactory(1);
             //Console.WriteLine(discount);            
 
             Console.ReadLine();
         }
 
-        private static decimal GetDiscountByFactoryCls(int custType)
+        private static decimal GetDiscountByUnityFactory(int custType)
         {
-            ICustomer obj1 = CustomerFactory.CreateCustomer(custType);
+            //using if else
+            //ICustomer obj1 = CustomerFactory.CreateCustomer(custType);
+
+            //using container
+            ICustomer obj1 = FactoryWithUnity.CreateFromContainer(custType);
+
+            ICustomer obj2 = FactoryWithUnity.CreateFromContainer(2);
+
             if (obj1 is SuperShop)
             {
                 Console.WriteLine("Super Shop");
             }
+
+            Console.WriteLine(obj1 == obj2);
+
+            return obj1.GetDiscount();
+        }
+
+        private static decimal GetDiscountByFactoryCls(int custType)
+        {
+            //using if else
+            //ICustomer obj1 = CustomerFactory.CreateCustomer(custType);
+
+            //using container
+            ICustomer obj1 = CustomerFactory.CreateFromContainer(custType);
+
+            ICustomer obj2 = CustomerFactory.CreateFromContainer(custType);
+
+            if (obj1 is SuperShop)
+            {
+                Console.WriteLine("Super Shop");
+            }
+
+            Console.WriteLine(obj1 == obj2);
+
             return obj1.GetDiscount();
         }
 
@@ -119,7 +151,7 @@ namespace DesignPattern
             obj2.Print();
             obj1.Print();
 
-            StaticInsClass.counter = 1;
+            //StaticInsClass.counter = 1;
             obj3.Print();
 
             //Singletone.counter = 0;
